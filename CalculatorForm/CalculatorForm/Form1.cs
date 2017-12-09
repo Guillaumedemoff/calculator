@@ -101,5 +101,10 @@ namespace CalculatorForm
         {
             Close();
         }
+
+        private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

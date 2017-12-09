@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComputerFramework">
+      <HintPath>..\..\..\DLLLabo4\ComputerFramework\bin\Debug\ComputerFramework.dll</HintPath>
+    </Reference>
     <Reference Include="SuperComputer">
       <HintPath>..\SuperComputer.dll</HintPath>
     </Reference>

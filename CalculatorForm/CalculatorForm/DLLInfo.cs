@@ -1,43 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CalculatorForm
 {
     class DLLInfo
     {
-        private string bla = "fsd";
         private string path;
         
-        private List<string> functions = new List<string>();
+        private List<Type> functions = new List<Type>();
 
         public DLLInfo(string path)
         {
             this.path = path;
-            functions.Add("add");
+            InitFnc();
+          
         }
-        public DLLInfo() { functions.Add("add"); }
+        public DLLInfo()
+        {
+        }
 
 
+        private void InitFnc()
+        {
+            if (path != "")
+            {
+                try
+                {
+                    Assembly dll = Assembly.LoadFile(path);
+                    Type[] types = dll.GetExportedTypes();
+                    foreach (Type t in types)
+                    {
+                        functions.Add(t);
+                    } 
+                }
+                catch
+                {
+                    MessageBox.Show("Could not charge dll from: " + path);
+                }
 
+            }
+        }
         public string Path
         {
             get { return path; }
             set { path = value; }
         }
 
-        public string Bla
+        public List<Type> Functions
         {
-            get { return bla; }
-            set { bla = value; }
-        }
-
-        public List<String> Functions
-        {
-            get { return functions; }
-       
+            get { return new List<Type>(functions); }
         }
     }
 }

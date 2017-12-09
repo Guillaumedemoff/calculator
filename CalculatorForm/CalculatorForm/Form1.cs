@@ -21,12 +21,12 @@ namespace CalculatorForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             OutputBox.Text = "test";
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace CalculatorForm
 
         private void outputBox_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -105,6 +105,11 @@ namespace CalculatorForm
         private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FunctionForm().Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(((DLLInfo)Program.bs.Current).Path);
         }
     }
 }

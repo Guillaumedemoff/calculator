@@ -104,7 +104,7 @@ namespace CalculatorForm
 
         private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            new FunctionForm().Show();
         }
     }
 }

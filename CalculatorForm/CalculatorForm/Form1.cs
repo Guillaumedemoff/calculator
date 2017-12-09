@@ -79,5 +79,21 @@ namespace CalculatorForm
                 }
             }
         }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = saveFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string file = saveFileDialog1.FileName;
+                try
+                {
+                    File.WriteAllText(file, OutputBox.Text);
+                }
+                catch (IOException)
+                {
+                }
+            }
+        }
     }
 }

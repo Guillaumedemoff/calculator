@@ -1,4 +1,5 @@
 ﻿using System;
+using SuperComputer;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,11 +28,37 @@ namespace CalculatorForm
             BindingSource fct = new BindingSource();
             foreach(DLLInfo di in Program.bs)
             {
+                foreach (IFunction f in di.Functions)
+                {
+                    fct.Add(f);
+                    
 
-                foreach (Type f in di.Functions)
-                    fct.Add(f.Name);
+                }
             }
-            listBox1.DataSource =fct;
+            listBox1.DataSource = fct;
+            listBox1.DisplayMember = "Name";
+
+            BindingSource bsPrm = new BindingSource();
+            bsPrm.DataSource = fct;
+            bsPrm.DataMember = "ParametersName";
+            parametersBox.DataSource = bsPrm;
+
+            helpBox.Text = ((IFunction)fct.Current).HelpMessage;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void helpBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

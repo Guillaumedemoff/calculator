@@ -28,6 +28,7 @@ namespace CalculatorForm
             dataGridView1.AutoGenerateColumns = true;
 
             listBox1.DataSource = Program.bs;
+            
             listBox1.DisplayMember = "Functions.Name";
 
 

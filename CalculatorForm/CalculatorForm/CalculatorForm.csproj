@@ -32,11 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ComputerFramework">
-      <HintPath>..\..\..\DLLLabo4\ComputerFramework\bin\Debug\ComputerFramework.dll</HintPath>
-    </Reference>
     <Reference Include="SuperComputer">
-      <HintPath>..\SuperComputer.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\SuperComputer.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperComputer %281%29">
+      <HintPath>..\..\..\..\..\Desktop\SuperComputer (1).dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

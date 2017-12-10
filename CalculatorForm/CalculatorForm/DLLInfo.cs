@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using SuperComputer;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +14,15 @@ namespace CalculatorForm
     {
         private string path;
         
-        private List<Type> functions = new List<Type>();
+        private List<IFunction> functions = new List<IFunction>();
 
         public DLLInfo(string path)
         {
             this.path = path;
             InitFnc();
-          
         }
+
+
         public DLLInfo(){}
 
 
@@ -34,12 +36,12 @@ namespace CalculatorForm
                     Type[] types = dll.GetExportedTypes();
                     foreach (Type t in types)
                     {
-                        functions.Add(t);
+                        functions.Add((IFunction)Activator.CreateInstance(t));
                     } 
                 }
-                catch
+                catch(Exception e)
                 {
-                    MessageBox.Show("Could not charge dll from: " + path);
+                    MessageBox.Show("Could not charge dll from: " + path +"\n" + e.Message);
                 }
 
             }
@@ -54,9 +56,9 @@ namespace CalculatorForm
             }
         }
 
-        public List<Type> Functions
+        public List<IFunction> Functions
         {
-            get { return new List<Type>(functions); }
+            get { return new List<IFunction>(functions); }
         }
     }
 }

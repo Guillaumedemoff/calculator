@@ -1,4 +1,5 @@
 ﻿using System;
+using SuperComputer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,13 +16,9 @@ namespace CalculatorForm
         [STAThread]
         static void Main()
         {
-            DLLInfo d1 = new DLLInfo("c:/user");
-
-            DLLInfo d2 = new DLLInfo("c:/moff");
-
+            DLLInfo d1 = new DLLInfo(@"C:\Users\guill\source\repos\calculator\ClassLibrary1\ClassLibrary1\bin\Debug\ClassLibrary1.dll");
             Program.bs.DataSource = typeof(DLLInfo);
             Program.bs.Add(d1);
-            Program.bs.Add(d2);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

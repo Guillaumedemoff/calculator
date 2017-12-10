@@ -5,16 +5,16 @@ using SuperComputer;
 
 namespace Combefis
 {
-    public class Substracter : Function<int>
+    public class Divi : Function<int>
     {
         public string Name
         {
-            get { return "moins"; }
+            get { return "diviseur"; }
         }
 
         public string HelpMessage
         {
-            get { return "add a b\nCalcule la différence des deux entiers c et d."; }
+            get { return "add a b\nCalcule la division des deux entiers c et d."; }
         }
 
         public string[] ParametersName
@@ -26,7 +26,7 @@ namespace Combefis
         {
             try
             {
-                return Convert.ToInt32(args[0]) - Convert.ToInt32(args[1]);
+                return Convert.ToInt32(args[0]) / Convert.ToInt32(args[1]);
             }
             catch (FormatException)
             {

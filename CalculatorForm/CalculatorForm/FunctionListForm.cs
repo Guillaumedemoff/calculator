@@ -26,9 +26,8 @@ namespace CalculatorForm
         private void FunctionListForm_Load(object sender, EventArgs e)
         {
             BindingSource bsFct = new BindingSource();
-            bsFct.DataSource = Program.bs;
-            bsFct.DataMember = "Functions";
-
+            bsFct.DataSource = Program.fct;
+      
             listBox1.DataSource = bsFct;
             listBox1.DisplayMember = "Name";
 

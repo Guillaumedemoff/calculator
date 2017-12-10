@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace CalculatorForm
 {
@@ -20,9 +21,7 @@ namespace CalculatorForm
             InitFnc();
           
         }
-        public DLLInfo()
-        {
-        }
+        public DLLInfo(){}
 
 
         private void InitFnc()
@@ -48,7 +47,11 @@ namespace CalculatorForm
         public string Path
         {
             get { return path; }
-            set { path = value; }
+            set
+            {
+                path = value;
+                InitFnc();
+            }
         }
 
         public List<Type> Functions

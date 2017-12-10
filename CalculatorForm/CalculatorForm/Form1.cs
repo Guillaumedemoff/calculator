@@ -111,5 +111,10 @@ namespace CalculatorForm
         {
             MessageBox.Show(((DLLInfo)Program.bs.Current).Path);
         }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FunctionListForm().Show();
+        }
     }
 }

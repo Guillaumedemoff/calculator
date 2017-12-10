@@ -20,30 +20,6 @@ namespace CalculatorForm
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult confirmResult = MessageBox.Show("This will earse current data if not save",
@@ -53,16 +29,6 @@ namespace CalculatorForm
             {
                 OutputBox.Text = "";
             }
-        }
-
-        private void outputBox_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -107,7 +73,7 @@ namespace CalculatorForm
             new FunctionForm().Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void EvaluateButton_Click(object sender, EventArgs e)
         {
             string[] cmd = InputBox.Text.Split(' ');
             string function = cmd[0];
@@ -116,13 +82,33 @@ namespace CalculatorForm
             IFunction f = Program.fct.Find(x => x.Name == cmd[0]);
             if (f != null)
             {
-                
-                MethodInfo method = f.GetType().GetMethod("Evaluate");
-                object a = method.Invoke(f,new object[] {pmrs});
-                OutputBox.Text +=String.Format("> {0}\n\t{1}\n", InputBox.Text, a.ToString()); 
+                try
+                {
+                    MethodInfo method = f.GetType().GetMethod("Evaluate");
+                    object a = method.Invoke(f,new object[] {pmrs});
+                    OutputBox.Text +=String.Format("> {0}\n\t{1}\n", InputBox.Text, a.ToString());
+                    InputBox.Text = "";
+                }
+
+                catch(TargetInvocationException tie)
+                {
+                   if(tie.InnerException is IndexOutOfRangeException)
+                    {
+                        MessageBox.Show("Not enough parameter");
+                    }
+                   else if(tie.InnerException is EvaluationException)
+                    {
+                        MessageBox.Show("Evaluation Error: \n" + tie.Message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error :" + tie.Message);
+                    }
+                }
+
             }
             else
-                MessageBox.Show("not found");
+                MessageBox.Show("Function not found");
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)

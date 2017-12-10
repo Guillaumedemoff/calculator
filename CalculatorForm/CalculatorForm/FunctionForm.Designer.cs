@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.DllFunctions = new System.Windows.Forms.ListBox();
             this.functionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.addPathButton = new System.Windows.Forms.Button();
             this.dLLInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.DllsPath = new System.Windows.Forms.DataGridView();
+            this.addPathButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dLLInfoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DllsPath)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -46,18 +46,22 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Library (*.dll)|*.dll";
             // 
-            // listBox1
+            // DllFunctions
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(455, 31);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(218, 303);
-            this.listBox1.TabIndex = 4;
+            this.DllFunctions.FormattingEnabled = true;
+            this.DllFunctions.Location = new System.Drawing.Point(455, 31);
+            this.DllFunctions.Name = "DllFunctions";
+            this.DllFunctions.Size = new System.Drawing.Size(218, 303);
+            this.DllFunctions.TabIndex = 4;
             // 
             // functionsBindingSource
             // 
             this.functionsBindingSource.DataMember = "Functions";
             this.functionsBindingSource.DataSource = this.dLLInfoBindingSource;
+            // 
+            // dLLInfoBindingSource
+            // 
+            this.dLLInfoBindingSource.DataSource = typeof(CalculatorForm.DLLInfo);
             // 
             // label1
             // 
@@ -68,13 +72,14 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Fonctions disponibles :";
             // 
-            // dataGridView1
+            // DllsPath
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(426, 361);
-            this.dataGridView1.TabIndex = 7;
+            this.DllsPath.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DllsPath.Location = new System.Drawing.Point(12, 12);
+            this.DllsPath.Name = "DllsPath";
+            this.DllsPath.Size = new System.Drawing.Size(426, 361);
+            this.DllsPath.TabIndex = 7;
+            this.DllsPath.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DllsPath_UserDeletingRow);
             // 
             // addPathButton
             // 
@@ -86,25 +91,21 @@
             this.addPathButton.UseVisualStyleBackColor = true;
             this.addPathButton.Click += new System.EventHandler(this.addPathButton_Click);
             // 
-            // dLLInfoBindingSource
-            // 
-            this.dLLInfoBindingSource.DataSource = typeof(CalculatorForm.DLLInfo);
-            // 
             // FunctionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 391);
             this.Controls.Add(this.addPathButton);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DllsPath);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.DllFunctions);
             this.Name = "FunctionForm";
             this.Text = "FunctionForm";
             this.Load += new System.EventHandler(this.FunctionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.functionsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dLLInfoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DllsPath)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,11 +113,11 @@
 
         #endregion
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox DllFunctions;
         private System.Windows.Forms.BindingSource dLLInfoBindingSource;
         private System.Windows.Forms.BindingSource functionsBindingSource;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DllsPath;
         private System.Windows.Forms.Button addPathButton;
     }
 }

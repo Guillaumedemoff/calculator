@@ -26,7 +26,7 @@ namespace Combefis
         {
             try
             {
-                return Convert.ToInt32(args[0]) - Convert.ToInt32(args[1]);
+                return 42;
             }
             catch (FormatException)
             {

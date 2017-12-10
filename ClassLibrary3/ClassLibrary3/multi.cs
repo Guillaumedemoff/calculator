@@ -5,11 +5,11 @@ using SuperComputer;
 
 namespace Combefis
 {
-    public class Multi : Function<int>
+    public class Multi : Function<string>
     {
         public string Name
         {
-            get { return "Multiplicateur"; }
+            get { return ""; }
         }
 
         public string HelpMessage
@@ -22,11 +22,12 @@ namespace Combefis
             get { return new string[] {"a", "b"}; }
         }
 
-        public int Evaluate (string[] args)
+        public string Evaluate (string[] args)
         {
             try
             {
-                return Convert.ToInt32 (args[0]) * Convert.ToInt32(args[1]);
+                return (Convert.ToInt32 (args[0]) * Convert.ToInt32(args[1])).ToString();
+                
             }
             catch (FormatException)
             {

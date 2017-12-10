@@ -18,11 +18,6 @@ namespace CalculatorForm
             InitializeComponent();
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void FunctionListForm_Load(object sender, EventArgs e)
         {
             BindingSource bsFct = new BindingSource();
@@ -39,19 +34,5 @@ namespace CalculatorForm
             helpBox.DataBindings.Add("Text", bsFct, "HelpMessage");
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void helpBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

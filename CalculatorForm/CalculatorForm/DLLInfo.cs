@@ -37,13 +37,20 @@ namespace CalculatorForm
                     foreach (Type t in types)
                     {
                         IFunction f = (IFunction)Activator.CreateInstance(t);
-                        functions.Add(f);
+                        if(f.Name != "")
+                        {
+                            functions.Add(f);
+                        }
+                        else
+                        {
+                            MessageBox.Show("a function couldn't be imported beause it as no name");
+                        }
                         Program.fct.Add(f);
                     } 
                 }
                 catch(Exception e)
                 {
-                    MessageBox.Show("Could not charge dll from: " + path +"\n" + e.Message);
+                    MessageBox.Show("Could not charge dll from: " + path +"\n");
                 }
 
             }

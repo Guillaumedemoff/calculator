@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using SuperComputer;
 using System.Reflection;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,22 +25,17 @@ namespace CalculatorForm
         private void FunctionForm_Load(object sender, EventArgs e)
         {
             
-            dataGridView1.DataSource = Program.bs;
-            dataGridView1.AutoGenerateColumns = true;
+            DllsPath.DataSource = Program.bs;
+            DllsPath.AutoGenerateColumns = true;
 
-            listBox1.DataSource = Program.bs;
+            DllFunctions.DataSource = Program.bs;
             
-            listBox1.DisplayMember = "Functions.Name";
+            DllFunctions.DisplayMember = "Functions.Name";
 
 
             Program.bs.AllowNew = true;
             ((BindingList<DLLInfo>)Program.bs.List).AllowRemove = true;
-            dataGridView1.Columns[0].Width = dataGridView1.Width;
-        }
-
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            
+            DllsPath.Columns[0].Width = DllsPath.Width;
         }
 
         private void addPathButton_Click(object sender, EventArgs e)
@@ -52,14 +48,22 @@ namespace CalculatorForm
                
                 try
                 {
-                    Program.bs.Add(new DLLInfo(file));
-                    
+                    Program.bs.Add(new DLLInfo(file));   
                 }
                 catch (IOException)
                 {
+                    MessageBox.Show("Could not open file");
                 }
             }
         }
 
+        private void DllsPath_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            DLLInfo dllInfo = (DLLInfo)Program.bs.List[e.Row.Index];
+            foreach(IFunction f in dllInfo.Functions)
+            {
+                Program.fct.Remove(f);
+            }
+        }
     }
 }

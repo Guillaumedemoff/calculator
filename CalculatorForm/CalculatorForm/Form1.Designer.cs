@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.InputBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.EvaluateButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,15 +55,15 @@
             this.InputBox.Size = new System.Drawing.Size(499, 20);
             this.InputBox.TabIndex = 1;
             // 
-            // button1
+            // EvaluateButton
             // 
-            this.button1.Location = new System.Drawing.Point(518, 429);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.EvaluateButton.Location = new System.Drawing.Point(518, 429);
+            this.EvaluateButton.Name = "EvaluateButton";
+            this.EvaluateButton.Size = new System.Drawing.Size(117, 23);
+            this.EvaluateButton.TabIndex = 2;
+            this.EvaluateButton.Text = "Evaluate";
+            this.EvaluateButton.UseVisualStyleBackColor = true;
+            this.EvaluateButton.Click += new System.EventHandler(this.EvaluateButton_Click);
             // 
             // menuStrip1
             // 
@@ -88,7 +88,6 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
-            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
@@ -168,13 +167,11 @@
             this.OutputBox.Size = new System.Drawing.Size(623, 395);
             this.OutputBox.TabIndex = 0;
             this.OutputBox.Text = "";
-            this.OutputBox.TextChanged += new System.EventHandler(this.outputBox_TextChanged);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "txt files (*.txt)|*.txt";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // saveFileDialog1
             // 
@@ -185,13 +182,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 458);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.EvaluateButton);
             this.Controls.Add(this.InputBox);
             this.Controls.Add(this.OutputBox);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -201,7 +197,7 @@
 
         #endregion
         private System.Windows.Forms.TextBox InputBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button EvaluateButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;

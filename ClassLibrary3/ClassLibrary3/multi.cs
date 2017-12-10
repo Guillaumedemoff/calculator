@@ -9,7 +9,7 @@ namespace Combefis
     {
         public string Name
         {
-            get { return ""; }
+            get { return "M"; }
         }
 
         public string HelpMessage
@@ -26,7 +26,7 @@ namespace Combefis
         {
             try
             {
-                return (Convert.ToInt32 (args[0]) * Convert.ToInt32(args[1])).ToString();
+                return "coucou";
                 
             }
             catch (FormatException)

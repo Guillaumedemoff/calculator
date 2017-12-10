@@ -25,25 +25,19 @@ namespace CalculatorForm
 
         private void FunctionListForm_Load(object sender, EventArgs e)
         {
-            BindingSource fct = new BindingSource();
-            foreach(DLLInfo di in Program.bs)
-            {
-                foreach (IFunction f in di.Functions)
-                {
-                    fct.Add(f);
-                    
+            BindingSource bsFct = new BindingSource();
+            bsFct.DataSource = Program.bs;
+            bsFct.DataMember = "Functions";
 
-                }
-            }
-            listBox1.DataSource = fct;
+            listBox1.DataSource = bsFct;
             listBox1.DisplayMember = "Name";
 
             BindingSource bsPrm = new BindingSource();
-            bsPrm.DataSource = fct;
+            bsPrm.DataSource = bsFct;
             bsPrm.DataMember = "ParametersName";
             parametersBox.DataSource = bsPrm;
 
-            helpBox.Text = ((IFunction)fct.Current).HelpMessage;
+            helpBox.DataBindings.Add("Text", bsFct, "HelpMessage");
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

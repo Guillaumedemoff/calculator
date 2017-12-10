@@ -10,6 +10,7 @@ namespace CalculatorForm
     static class Program
     {
         internal static BindingSource bs = new BindingSource();
+        internal static List<IFunction> fct = new List<IFunction>();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,8 +18,9 @@ namespace CalculatorForm
         static void Main()
         {
             DLLInfo d1 = new DLLInfo(@"C:\Users\guill\source\repos\calculator\ClassLibrary1\ClassLibrary1\bin\Debug\ClassLibrary1.dll");
-            Program.bs.DataSource = typeof(DLLInfo);
-            Program.bs.Add(d1);
+            bs.DataSource = typeof(DLLInfo);
+            bs.Add(d1);
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

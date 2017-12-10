@@ -36,7 +36,9 @@ namespace CalculatorForm
                     Type[] types = dll.GetExportedTypes();
                     foreach (Type t in types)
                     {
-                        functions.Add((IFunction)Activator.CreateInstance(t));
+                        IFunction f = (IFunction)Activator.CreateInstance(t);
+                        functions.Add(f);
+                        Program.fct.Add(f);
                     } 
                 }
                 catch(Exception e)

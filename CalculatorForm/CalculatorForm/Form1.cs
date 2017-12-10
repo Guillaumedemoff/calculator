@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using SuperComputer;
+using System.Reflection;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +23,6 @@ namespace CalculatorForm
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            OutputBox.Text = "test";
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,7 +109,20 @@ namespace CalculatorForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(((DLLInfo)Program.bs.Current).Path);
+            string[] cmd = InputBox.Text.Split(' ');
+            string function = cmd[0];
+            string[] pmrs = new string[cmd.Count()];
+            Array.Copy(cmd, 1, pmrs,0, cmd.Count()-1);
+            IFunction f = Program.fct.Find(x => x.Name == cmd[0]);
+            if (f != null)
+            {
+                
+                MethodInfo method = f.GetType().GetMethod("Evaluate");
+                object a = method.Invoke(f,new object[] {pmrs});
+                OutputBox.Text +=String.Format("> {0}\n\t{1}\n", InputBox.Text, a.ToString()); 
+            }
+            else
+                MessageBox.Show("not found");
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)

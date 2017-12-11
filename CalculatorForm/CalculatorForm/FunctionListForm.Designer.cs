@@ -42,7 +42,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(277, 368);
             this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // parametersBox
             // 
@@ -51,7 +50,6 @@
             this.parametersBox.Name = "parametersBox";
             this.parametersBox.Size = new System.Drawing.Size(293, 134);
             this.parametersBox.TabIndex = 1;
-            this.parametersBox.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // label1
             // 

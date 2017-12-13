@@ -27,15 +27,15 @@ namespace dllCalculator
         {
             try
             {
-                if ("type" == "b")
+                if (args[0] == "b")
                 {
-                    double dec = Convert.ToInt64("nombre", 2);
+                    //vérifier qu'un nombre binaire ne contient que des 0 et des 1
+                    double dec = Convert.ToInt64(args[1], 2);
                     return dec.ToString();
                 }
-
-                if ("type" == "d")
+                if (args[0] == "d")
                 {
-                    double num = Convert.ToDouble("nombre");
+                    double num = Convert.ToDouble(args[1]);
                     string result = string.Empty;
                     while (num % 2 > 0)
                     {
@@ -47,8 +47,7 @@ namespace dllCalculator
                 }
                 else
                 {
-                    //raise format exception ?
-                    return "0";
+                    throw new EvaluationException("Veuillez entrer un b ou un d suivi d'une virgule et d'un nombre binaire ou décimal");
                 }
             }
             catch (FormatException)

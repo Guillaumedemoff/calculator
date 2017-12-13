@@ -25,15 +25,33 @@ namespace Grapher
         {
             double output = 0;
             int[] polynom;
+            int xi;
+            int xf;
             try
             {
                 polynom = Array.ConvertAll(args[0].Split(','), x => Convert.ToInt32(x));
+                xi = Convert.ToInt32(args[1]);
+                xf = Convert.ToInt32(args[2]);
             }
             catch (FormatException)
             {
                 throw new EvaluationException("Couldn't interpret your polynom");
             }
 
+            List<double> vals = new List<double>();
+            for(int x = xi; x < xf; x++ )
+            {
+                vals.Add(EvalPoly(polynom, x));
+            }
+
+            double max = vals.Max();
+            double min = vals.Min();
+            int ydist = Convert.ToInt32(max - min);
+            int xdist = Convert.ToInt32(xf - xi);
+
+            char[,] graph = new char[,] {};
+            
+ 
             return EvalPoly(polynom, 2).ToString();
         }
         private double EvalPoly(int[] poly, double x)

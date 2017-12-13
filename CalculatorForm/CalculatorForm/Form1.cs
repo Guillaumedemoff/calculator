@@ -15,9 +15,17 @@ namespace CalculatorForm
 {
     public partial class Form1 : Form
     {
+        private int fctlen = 2;
+
         public Form1()
         {
             InitializeComponent();
+            foreach (IFunction f in Program.fct)
+            {
+                AutoCompleteBox.AutoCompleteCustomSource.Add(f.Name);
+            }
+            AutoCompleteBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            AutoCompleteBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -115,5 +123,39 @@ namespace CalculatorForm
         {
             new FunctionListForm().Show();
         }
+
+        private void InputBox_TextChanged(object sender, EventArgs e)
+        {
+           if(InputBox.SelectionStart <= fctlen) 
+                AutoCompleteBox.Visible = true;
+            AutoCompleteBox.Text = InputBox.Text;
+            AutoCompleteBox.Focus();
+            AutoCompleteBox.Select(AutoCompleteBox.Text.Length, 0);
+        }
+
+        private void InputBox_Leave(object sender, EventArgs e)
+        {
+            
+            if(!AutoCompleteBox.Focused)
+            {
+                AutoCompleteBox.Visible = false;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void AutoCompleteBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            InputBox.Text = AutoCompleteBox.Text + " ";
+            fctlen = AutoCompleteBox.Text.Length-1;
+            AutoCompleteBox.Visible = false;
+            InputBox.Focus();
+            InputBox.Select(InputBox.Text.Length, 0);
+        }
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace dllCalculator
 {
@@ -29,9 +30,19 @@ namespace dllCalculator
             {
                 if (args[0] == "b")
                 {
-                    //vérifier qu'un nombre binaire ne contient que des 0 et des 1
-                    double dec = Convert.ToInt64(args[1], 2);
-                    return dec.ToString();
+                    string pattern = @"[01]+";
+                    foreach (Match m in Regex.Matches(args[1], pattern))
+                    {
+                        if (args[1].Length == m.Length)
+                        {
+                            double dec = Convert.ToInt64(args[1], 2);
+                            return dec.ToString();
+                        }
+                        else
+                        {
+                            throw new EvaluationException("Veuillez entrer un b ou un d suivi d'une virgule et d'un nombre binaire ou décimal");
+                        }
+                    }
                 }
                 if (args[0] == "d")
                 {

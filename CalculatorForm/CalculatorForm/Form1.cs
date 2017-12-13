@@ -83,6 +83,7 @@ namespace CalculatorForm
 
         private void EvaluateButton_Click(object sender, EventArgs e)
         {
+            fctlen = 0;
             string[] cmd = InputBox.Text.Split(' ');
             string function = cmd[0];
             string[] pmrs = new string[cmd.Count()];
@@ -126,7 +127,7 @@ namespace CalculatorForm
 
         private void InputBox_TextChanged(object sender, EventArgs e)
         {
-           if(InputBox.SelectionStart <= fctlen) 
+            if (InputBox.SelectionStart < fctlen && InputBox.Focused)
                 AutoCompleteBox.Visible = true;
             AutoCompleteBox.Text = InputBox.Text;
             AutoCompleteBox.Focus();

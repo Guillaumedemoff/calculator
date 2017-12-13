@@ -36,21 +36,24 @@ namespace CalculatorForm
                     Type[] types = dll.GetExportedTypes();
                     foreach (Type t in types)
                     {
-                        IFunction f = (IFunction)Activator.CreateInstance(t);
-                        if(f.Name != "")
+                        if(typeof(IFunction).IsAssignableFrom(t))
                         {
-                            functions.Add(f);
+                            IFunction f = (IFunction)Activator.CreateInstance(t);
+                            if(f.Name != "")
+                            {
+                                functions.Add(f);
+                            }
+                            else
+                            {
+                                MessageBox.Show("a function couldn't be imported beause it as no name");
+                            }
+                            Program.fct.Add(f);
                         }
-                        else
-                        {
-                            MessageBox.Show("a function couldn't be imported beause it as no name");
-                        }
-                        Program.fct.Add(f);
                     } 
                 }
                 catch(Exception e)
                 {
-                    MessageBox.Show("Could not charge dll from: " + path +"\n");
+                    MessageBox.Show("Could not charge dll from: " + path +"\n" + e.Message);
                 }
 
             }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SuperComputer;
 
 namespace dllCalculator
 {
-    public class EvaluatePolynom: Functio<string>
+    public class EvaluatePolynom: Function<string>
     {
         public string Name
         {

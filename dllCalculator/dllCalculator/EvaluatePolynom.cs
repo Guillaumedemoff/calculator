@@ -1,13 +1,13 @@
 ﻿using System;
-using SuperComputer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SuperComputer;
 
-namespace Grapher
+namespace dllCalculator
 {
-    public class Grapher : Function<string>
+    public class EvaluatePolynom: Function<string>
     {
         public string Name
         {
@@ -45,6 +45,5 @@ namespace Grapher
             }
             return result.ToString();
         }
-
     }
 }

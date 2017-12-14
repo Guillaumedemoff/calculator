@@ -23,49 +23,28 @@ namespace Grapher
         }
         public string Evaluate(string[] args)
         {
-            double output = 0;
             int[] polynom;
-            int xi;
-            int xf;
+            int x;
             try
             {
-                polynom = Array.ConvertAll(args[0].Split(','), x => Convert.ToInt32(x));
-                xi = Convert.ToInt32(args[1]);
-                xf = Convert.ToInt32(args[2]);
+                polynom = Array.ConvertAll(args[0].Split(','), i => Convert.ToInt32(i));
+                x = Convert.ToInt32(args[1]);
             }
             catch (FormatException)
             {
                 throw new EvaluationException("Couldn't interpret your polynom");
             }
 
-            List<double> vals = new List<double>();
-            for(int x = xi; x < xf; x++ )
-            {
-                vals.Add(EvalPoly(polynom, x));
-            }
-
-            double max = vals.Max();
-            double min = vals.Min();
-            int ydist = Convert.ToInt32(max - min);
-            int xdist = Convert.ToInt32(xf - xi);
-
-            char[,] graph = new char[,] {};
-            
- 
-            return EvalPoly(polynom, 2).ToString();
-        }
-        private double EvalPoly(int[] poly, double x)
-        {
-            int n = poly.Count() - 1;
+            int n = polynom.Count() - 1;
             double result = 0;
 
-            foreach(int i in poly)
+            foreach (int i in polynom)
             {
                 result += i * Math.Pow(x, n);
                 n--;
             }
-
-            return result;
+            return result.ToString();
         }
+
     }
 }

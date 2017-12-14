@@ -42,12 +42,13 @@ namespace CalculatorForm
                             if(f.Name != "")
                             {
                                 functions.Add(f);
+                                Program.fct.Add(f);
+                                Form1.autoCompleteStringCollection.Add(f.Name);
                             }
                             else
                             {
-                                MessageBox.Show("a function couldn't be imported beause it as no name");
+                                MessageBox.Show("a function couldn't be imported beause it has no name");
                             }
-                            Program.fct.Add(f);
                         }
                     } 
                 }

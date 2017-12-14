@@ -63,7 +63,18 @@ namespace CalculatorForm
             foreach(IFunction f in dllInfo.Functions)
             {
                 Program.fct.Remove(f);
+                Form1.autoCompleteStringCollection.Remove(f.Name);
             }
+        }
+
+        private void DllsPath_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+           // MessageBox.Show("sqdfsqdf");
+        }
+
+        private void DllsPath_NewRowNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            MessageBox.Show("sqdfqsdf");
         }
     }
 }

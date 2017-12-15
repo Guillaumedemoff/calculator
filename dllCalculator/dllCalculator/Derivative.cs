@@ -43,8 +43,8 @@ namespace dllCalculator
         }
         private double DerivatePoly(double[] f, double x)
         {
-            double xplusdx = x + double.Epsilon;
-            double xminusdx = x - double.Epsilon;
+            double xplusdx = x + Convert.ToDouble(1e-7);
+            double xminusdx = x - Convert.ToDouble(1e-7);
             int n = f.Count() - 1;
             double fxplusdx = 0;
             double fxminusdx = 0;
@@ -56,13 +56,15 @@ namespace dllCalculator
                 n--;
             }
 
+            n = f.Count() - 1;
+
             foreach (int i in f)
             {
                 fxminusdx += i * Math.Pow(xminusdx, n);
                 n--;
             }
 
-            result = (fxplusdx - fxminusdx) / (2 * double.Epsilon);
+            result = (fxplusdx - fxminusdx) / (2 * Convert.ToDouble(1e-7));
             return result;
         }
     }

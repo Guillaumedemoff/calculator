@@ -15,7 +15,7 @@ namespace CalculatorForm
 {
     public partial class FunctionForm : Form
     {
-        
+        BindingSource bs = new BindingSource();
         public FunctionForm()
         {
             InitializeComponent();
@@ -24,42 +24,23 @@ namespace CalculatorForm
 
         private void FunctionForm_Load(object sender, EventArgs e)
         {
-            
-            DllsPath.DataSource = Program.bs;
+            bs.DataSource = typeof(DLLInfo);
+            DllsPath.DataSource = bs;
             DllsPath.AutoGenerateColumns = true;
 
-            DllFunctions.DataSource = Program.bs;
+            DllFunctions.DataSource = bs;
             
             DllFunctions.DisplayMember = "Functions.Name";
 
 
-            Program.bs.AllowNew = true;
-            ((BindingList<DLLInfo>)Program.bs.List).AllowRemove = true;
+            bs.AllowNew = true;
+            ((BindingList<DLLInfo>)bs.List).AllowRemove = true;
             DllsPath.Columns[0].Width = DllsPath.Width;
-        }
-
-        private void addPathButton_Click(object sender, EventArgs e)
-        {
-            DialogResult result = openFileDialog1.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-
-                string file = openFileDialog1.FileName;
-               
-                try
-                {
-                    Program.bs.Add(new DLLInfo(file));   
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("Could not open file");
-                }
-            }
         }
 
         private void DllsPath_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            DLLInfo dllInfo = (DLLInfo)Program.bs.List[e.Row.Index];
+            DLLInfo dllInfo = (DLLInfo)bs.List[e.Row.Index];
             foreach(IFunction f in dllInfo.Functions)
             {
                 Program.fct.Remove(f);
@@ -67,14 +48,24 @@ namespace CalculatorForm
             }
         }
 
-        private void DllsPath_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-           // MessageBox.Show("sqdfsqdf");
+            string file = openFileDialog1.FileName;
+
+            try
+            {
+                bs.Add(new DLLInfo(file));
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("Could not open file");
+            }
         }
 
         private void DllsPath_NewRowNeeded(object sender, DataGridViewRowEventArgs e)
         {
-            MessageBox.Show("sqdfqsdf");
+            bs.RemoveCurrent();
+            DialogResult result = openFileDialog1.ShowDialog();
         }
     }
 }

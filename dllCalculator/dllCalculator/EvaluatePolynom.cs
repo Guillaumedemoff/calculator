@@ -7,7 +7,7 @@ using SuperComputer;
 
 namespace dllCalculator
 {
-    public class EvaluatePolynom: Function<string>
+    public class EvaluatePolynom: Function<int>
     {
         public string Name
         {
@@ -21,7 +21,7 @@ namespace dllCalculator
         {
             get { return new string[] { "a" }; }
         }
-        public string Evaluate(string[] args)
+        public int Evaluate(string[] args)
         {
             int[] polynom;
             int x;
@@ -34,16 +34,20 @@ namespace dllCalculator
             {
                 throw new EvaluationException("Couldn't interpret your polynom");
             }
+            catch(IndexOutOfRangeException)
+            {
+                throw new EvaluationException("Not Enough Argument");
+            }
 
             int n = polynom.Count() - 1;
-            double result = 0;
+            int result = 0;
 
             foreach (int i in polynom)
             {
-                result += i * Math.Pow(x, n);
+                result += Convert.ToInt32(i * Math.Pow(x, n));
                 n--;
             }
-            return result.ToString();
+            return result;
         }
     }
 }

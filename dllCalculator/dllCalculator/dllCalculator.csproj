@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SuperComputer">
-      <HintPath>..\..\..\..\..\Desktop\SuperComputer.dll</HintPath>
+      <HintPath>..\..\CalculatorForm\SuperComputer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

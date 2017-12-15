@@ -56,6 +56,8 @@ namespace dllCalculator
                 n--;
             }
 
+            n = f.Count() - 1;
+
             foreach (int i in f)
             {
                 fxminusdx += i * Math.Pow(xminusdx, n);

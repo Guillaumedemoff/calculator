@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FunctionListForm));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.parametersBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,7 +41,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 25;
             this.listBox1.Location = new System.Drawing.Point(24, 23);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(6);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(550, 704);
             this.listBox1.TabIndex = 0;
@@ -50,7 +51,7 @@
             this.parametersBox.FormattingEnabled = true;
             this.parametersBox.ItemHeight = 25;
             this.parametersBox.Location = new System.Drawing.Point(590, 56);
-            this.parametersBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.parametersBox.Margin = new System.Windows.Forms.Padding(6);
             this.parametersBox.Name = "parametersBox";
             this.parametersBox.Size = new System.Drawing.Size(582, 254);
             this.parametersBox.TabIndex = 1;
@@ -78,7 +79,7 @@
             // helpBox
             // 
             this.helpBox.Location = new System.Drawing.Point(590, 400);
-            this.helpBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.helpBox.Margin = new System.Windows.Forms.Padding(6);
             this.helpBox.Multiline = true;
             this.helpBox.Name = "helpBox";
             this.helpBox.Size = new System.Drawing.Size(582, 327);
@@ -94,10 +95,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.parametersBox);
             this.Controls.Add(this.listBox1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FunctionListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FunctionListForm";
+            this.Text = "Function Manager";
             this.Load += new System.EventHandler(this.FunctionListForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

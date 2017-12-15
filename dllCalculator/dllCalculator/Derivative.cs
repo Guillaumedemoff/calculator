@@ -36,6 +36,10 @@ namespace dllCalculator
             {
                 throw new EvaluationException("Les paramètres doivent être des entiers.");
             }
+            catch (IndexOutOfRangeException)
+            {
+                throw new EvaluationException("Not Enough Argument");
+            }
         }
         private double DerivatePoly(double[] f, double x)
         {

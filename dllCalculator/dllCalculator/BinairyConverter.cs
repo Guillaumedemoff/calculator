@@ -12,7 +12,7 @@ namespace dllCalculator
     {
         public string Name
         {
-            get { return "convertisseur décimal/binaire"; }
+            get { return "convertisseur"; }
         }
 
         public string HelpMessage
@@ -27,45 +27,75 @@ namespace dllCalculator
 
         public string Evaluate(string[] args)
         {
-            try
+            if(args.Count() < 2)
             {
-                if (args[0] == "b")
+                throw new EvaluationException("Not Enough Argument");
+            }
+
+            if (args[0] == "b")
+            {
+                string pattern = @"[01]+";
+                MatchCollection matches = Regex.Matches(args[1], pattern);
+                if (matches.Count == 0)
                 {
-                    string pattern = @"[01]+";
-                    foreach (Match m in Regex.Matches(args[1], pattern))
+                    throw new EvaluationException("Veiller entrer un nombre binaire");
+                }
+                foreach (Match m in matches)
+                {
+                    if (args[1].Length == m.Length)
                     {
-                        if (args[1].Length == m.Length)
+                        int dec;
+                        try
                         {
-                            double dec = Convert.ToInt64(args[1], 2);
+                            dec = Convert.ToInt32(args[1], 2);
                             return dec.ToString();
                         }
-                        else
+                        catch(FormatException)
                         {
                             throw new EvaluationException("Veuillez entrer un b ou un d suivi d'une virgule et d'un nombre binaire ou décimal");
+
                         }
+
                     }
-                }
-                if (args[0] == "d")
-                {
-                    double num = Convert.ToDouble(args[1]);
-                    string result = string.Empty;
-                    while (num % 2 > 0)
+                    else
                     {
-                        double rem = num % 2;
-                        num /= 2;
-                        result = rem.ToString() + result;
+                        throw new EvaluationException("Veuillez entrer un b ou un d suivi d'une virgule et d'un nombre binaire ou décimal");
                     }
-                    return result;
-                }
-                else
-                {
-                    throw new EvaluationException("Veuillez entrer un b ou un d suivi d'une virgule et d'un nombre binaire ou décimal");
                 }
             }
-            catch (FormatException)
+            else if (args[0] == "d")
             {
-                throw new EvaluationException("Les deux paramètres doivent être des chaines de caractères séparées par une virgule.");
+                int num;
+                try
+                {
+                    num = Convert.ToInt32(args[1]);
+                }
+                catch(FormatException)
+                {
+                    throw new EvaluationException("Le deuxième paramètre doit etre un entier");
+                }
+
+                string result = "";
+                Stack<string> binaryResult = new Stack<string>();
+                while (num > 0)
+                {
+                    int rem = num % 2;
+                    binaryResult.Push(rem.ToString());
+                    num /= 2;
+                }
+
+                while(binaryResult.Count > 0)
+                {
+                    result += binaryResult.Pop();
+                }
+                return result;
             }
+            else
+            {
+                throw new EvaluationException("Le premier paramètre doit etre un b ou un d");
+            }
+
+            return null;
         }
     }
 }

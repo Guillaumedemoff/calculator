@@ -99,17 +99,13 @@ namespace CalculatorForm
 
                 catch(TargetInvocationException tie)
                 {
-                   if(tie.InnerException is IndexOutOfRangeException)
+                   if(tie.InnerException is EvaluationException)
                     {
-                        MessageBox.Show("Not enough parameter");
-                    }
-                   else if(tie.InnerException is EvaluationException)
-                    {
-                        MessageBox.Show("Evaluation Error: \n" + tie.Message);
+                        MessageBox.Show("Evaluation Error: \n" + tie.InnerException.Message);
                     }
                     else
                     {
-                        MessageBox.Show("Error :" + tie.Message);
+                        MessageBox.Show("Error :" + tie.InnerException.Message);
                     }
                 }
 

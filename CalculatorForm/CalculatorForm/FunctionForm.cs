@@ -15,7 +15,7 @@ namespace CalculatorForm
 {
     public partial class FunctionForm : Form
     {
-        BindingSource bs = new BindingSource();
+        internal static BindingSource bs = new BindingSource();
         public FunctionForm()
         {
             InitializeComponent();

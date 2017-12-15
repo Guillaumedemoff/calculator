@@ -35,6 +35,8 @@ namespace TestDll
             Assert.That(delegate { f.Evaluate(new string[] { "&,4,5", "-a" }); }, Throws.TypeOf<EvaluationException>());
             Assert.That(delegate { f.Evaluate(new string[] { }); }, Throws.TypeOf<EvaluationException>());
             Assert.That(f.Evaluate(new string[] { "1,1", "2" }), Is.EqualTo(1).Within(1).Percent);
+            Assert.That(f.Evaluate(new string[] { "1,3,-4", "15" }), Is.EqualTo(33).Within(1).Percent);
+            Assert.That(f.Evaluate(new string[] { "4,0,3,3,0", "1" }), Is.EqualTo(25).Within(1).Percent);
         }
 
         [Test()]

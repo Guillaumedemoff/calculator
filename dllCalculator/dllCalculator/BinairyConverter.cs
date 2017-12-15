@@ -12,24 +12,27 @@ namespace dllCalculator
     {
         public string Name
         {
-            get { return "convertisseur"; }
+            get { return "BinairyConverter"; }
         }
 
         public string HelpMessage
         {
-            get { return "Convert decimal to binairy and inversely\r\nConvertit de décimal à binaire et inversément\r\nd: décimal et b: binaire"; }
+            get { return "This function converts a decimal number to a binairy number and inversely\r\nYou need to give 2 arguments\r\n" +
+                    "First agument: a 'd' for décimal or a 'b' for binaire" +
+                    "Second argument: the number" +
+                    "ex: to convert a binairy number 1001 --> BinairyConverter b 1001"; }
         }
 
         public string[] ParametersName
         {
-            get { return new string[] { "type", "nombre" }; }
+            get { return new string[] { "type", "number" }; }
         }
 
         public string Evaluate(string[] args)
         {
             if(args.Count() < 2)
             {
-                throw new EvaluationException("Not Enough Argument");
+                throw new EvaluationException("Not enough argument given");
             }
 
             if (args[0] == "b")
@@ -38,7 +41,7 @@ namespace dllCalculator
                 MatchCollection matches = Regex.Matches(args[1], pattern);
                 if (matches.Count == 0)
                 {
-                    throw new EvaluationException("Veiller entrer un nombre binaire");
+                    throw new EvaluationException("Please enter a binairy number");
                 }
                 foreach (Match m in matches)
                 {
@@ -52,14 +55,14 @@ namespace dllCalculator
                         }
                         catch(FormatException)
                         {
-                            throw new EvaluationException("Veuillez entrer un b ou un d suivi d'une virgule et d'un nombre binaire ou décimal");
+                            throw new EvaluationException("Please consult the help message to respect the format");
 
                         }
 
                     }
                     else
                     {
-                        throw new EvaluationException("Veuillez entrer un b ou un d suivi d'une virgule et d'un nombre binaire ou décimal");
+                        throw new EvaluationException("Please consult the help message to respect the format");
                     }
                 }
             }
@@ -72,7 +75,7 @@ namespace dllCalculator
                 }
                 catch(FormatException)
                 {
-                    throw new EvaluationException("Le deuxième paramètre doit etre un entier");
+                    throw new EvaluationException("The second parameter needs to be an integer");
                 }
 
                 string result = "";
@@ -92,7 +95,7 @@ namespace dllCalculator
             }
             else
             {
-                throw new EvaluationException("Le premier paramètre doit etre un b ou un d");
+                throw new EvaluationException("The first parameter needs to be a b for binairy or a d for decimal");
             }
 
             return null;

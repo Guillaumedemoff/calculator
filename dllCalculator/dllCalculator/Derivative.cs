@@ -11,17 +11,21 @@ namespace dllCalculator
     {
         public string Name
         {
-            get { return "derivée"; }
+            get { return "Derivative"; }
         }
 
         public string HelpMessage
         {
-            get { return "derivate a function\r\nCalcule la dérivée en un point x d'une fonction f(x)"; }
+            get { return "This function evaluates the derivative of a polynom at a point\r\n" +
+                    "You need to give 2 arguments\r\n" +
+                    "First argument: each coeffficient in descending order of degrees\r\n" +
+                    "Second argument: the point where you want an evaluation of the derivative of the polynom" +
+                    "ex: the derivative of x^2 + 3 to evaluate in point 3--> Derivative 1,0,3 3"; }
         }
 
         public string[] ParametersName
         {
-            get { return new string[] { "f(x)", "x" }; }
+            get { return new string[] { "polynom", "point" }; }
         }
 
         public double Evaluate(string[] args)
@@ -34,11 +38,11 @@ namespace dllCalculator
             }
             catch (FormatException)
             {
-                throw new EvaluationException("Les paramètres doivent être des entiers.");
+                throw new EvaluationException("The parameters need to be integer");
             }
             catch (IndexOutOfRangeException)
             {
-                throw new EvaluationException("Not Enough Argument");
+                throw new EvaluationException("Not enough argument given");
             }
         }
         private double DerivatePoly(double[] f, double x)

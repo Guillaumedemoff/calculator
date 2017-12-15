@@ -18,7 +18,7 @@ namespace dllCalculator
         {
             get { return "This function evaluates the derivative of a polynom at a point\r\n" +
                     "You need to give 2 arguments\r\n" +
-                    "First argument: each coeffficient in descending order of degrees\r\n" +
+                    "First argument: each coefficient in descending order of degrees\r\n" +
                     "Second argument: the point where you want an evaluation of the derivative of the polynom" +
                     "ex: the derivative of x^2 + 3 to evaluate in point 3--> Derivative 1,0,3 3"; }
         }

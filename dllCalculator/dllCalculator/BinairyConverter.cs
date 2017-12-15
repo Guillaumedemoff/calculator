@@ -17,10 +17,10 @@ namespace dllCalculator
 
         public string HelpMessage
         {
-            get { return "This function converts a decimal number to a binairy number and inversely\r\nYou need to give 2 arguments\r\n" +
-                    "First agument: a 'd' for décimal or a 'b' for binaire" +
+            get { return "This function converts a decimal number to a binairy number and connversely\r\nYou need to give 2 arguments\r\n" +
+                    "First agument: d for décimal or b for binaire" +
                     "Second argument: the number" +
-                    "ex: to convert a binairy number 1001 --> BinairyConverter b 1001"; }
+                    "ex: to convert a binairy number 1001 to decimal--> BinairyConverter b 1001"; }
         }
 
         public string[] ParametersName

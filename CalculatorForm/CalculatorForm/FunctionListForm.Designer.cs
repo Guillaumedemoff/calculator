@@ -82,6 +82,7 @@
             this.helpBox.Margin = new System.Windows.Forms.Padding(6);
             this.helpBox.Multiline = true;
             this.helpBox.Name = "helpBox";
+            this.helpBox.ReadOnly = true;
             this.helpBox.Size = new System.Drawing.Size(582, 327);
             this.helpBox.TabIndex = 4;
             // 
